@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation — Manish & Shubhangi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ece3d3; --card:#fbf7ef; --ink:#2f2418;
+    --taupe:#4f4231; --taupe-soft:#5f4f3b;
+    --gold:#b4915a; --gold-deep:#7c5a20;
+    --hair:rgba(180,145,90,.34); --hair-soft:rgba(180,145,90,.18);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; }
+  body{
+    min-height:100dvh; display:flex; align-items:center; justify-content:center;
+    font-family:"Jost",system-ui,sans-serif; color:var(--ink);
+    -webkit-font-smoothing:antialiased; overflow-y:auto;
+    background:radial-gradient(120% 80% at 50% 0%, #f4ecdd 0%, var(--bg) 62%);
+  }
+
+  /* sized box that everything scales against */
+  .frame{
+    position:relative;
+    height:100dvh;
+    max-height:100dvh;
+    width:min(100vw, 56dvh);
+    container-type:size;
+  }
+
+  .card{
+    width:100%; height:100%;
+    background:var(--card);
+    font-size:3.3cqmin;                 /* master scale — tuned to fit safely */
+    padding:4.2cqmin 5.5cqmin;
+    display:flex; flex-direction:column; justify-content:center;
+    text-align:center;
+    overflow:visible;
+    box-shadow:0 3cqmin 8cqmin -4cqmin rgba(73,61,48,.42);
+    animation:rise .9s ease both;
+  }
+  @media (prefers-reduced-motion:reduce){ .card{ animation:none; } }
+  @keyframes rise{ from{opacity:0; transform:translateY(1.6cqmin);} to{opacity:1; transform:none;} }
+  .card::before{ content:""; position:absolute; inset:3cqmin; border:1px solid var(--hair); pointer-events:none; }
+
+  .lotus{ width:20cqmin; height:auto; margin:0 auto .2em; display:block; }
+  .lotus path{ fill:none; stroke:var(--gold); stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
+  .lotus .dot{ fill:var(--gold); stroke:none; }
+
+  .eyebrow{ font-family:"Cormorant Garamond",serif; font-style:italic; font-weight:500; font-size:1.45em; color:var(--gold-deep); }
+
+  .divider{ display:flex; align-items:center; justify-content:center; gap:.7em; margin:.75em auto; width:66%; }
+  .divider .line{ flex:1; height:1px; background:var(--hair); }
+  .divider svg{ width:1em; height:1em; flex:none; }
+  .divider svg path{ fill:none; stroke:var(--gold); stroke-width:1.3; stroke-linecap:round; stroke-linejoin:round; }
+
+  .names{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:2.55em; line-height:1.04; color:var(--ink); }
+  .names .amp{ display:block; font-style:italic; font-weight:500; font-size:.62em; color:var(--gold-deep); margin:.05em 0; }
+
+  .intro{ font-size:.9em; font-weight:300; line-height:1.6; color:var(--taupe); max-width:30ch; margin:.7em auto 0; }
+
+  .date-block{ margin-top:.75em; }
+  .date-day{ font-family:"Cormorant Garamond",serif; font-size:.82em; letter-spacing:.4em; text-transform:uppercase; color:var(--gold-deep); padding-left:.4em; margin-bottom:.25em; }
+  .date-main{ font-family:"Cormorant Garamond",serif; font-weight:500; font-size:1.95em; color:var(--ink); line-height:1.08; }
+  .arrive{ font-size:.78em; font-weight:300; letter-spacing:.04em; color:var(--taupe-soft); margin-top:.5em; }
+
+  .schedule{ margin:.75em auto 0; width:100%; max-width:34em; text-align:left; }
+  .row{ display:grid; grid-template-columns:5.2em 1.4em 1fr; align-items:center; padding:.5em 0; }
+  .row + .row{ border-top:1px solid var(--hair-soft); }
+  .row .time{ font-family:"Cormorant Garamond",serif; font-weight:600; font-size:1.12em; color:var(--gold-deep); text-align:right; white-space:nowrap; }
+  .row .mark{ display:flex; justify-content:center; }
+  .row .mark span{ width:.42em; height:.42em; border-radius:50%; background:var(--gold); box-shadow:0 0 0 .18em rgba(180,145,90,.14); }
+  .row .event{ font-size:.86em; color:var(--taupe); letter-spacing:.01em; }
+
+  .location{ font-family:"Cormorant Garamond",serif; font-size:1.4em; font-weight:500; color:var(--ink); line-height:1.35; margin-top:.75em; }
+  .location .sub{ display:block; font-family:"Jost",sans-serif; font-size:.5em; font-weight:300; letter-spacing:.06em; color:var(--taupe-soft); margin-top:.35em; }
+
+  .gifts{ font-family:"Cormorant Garamond",serif; font-style:italic; font-size:1em; line-height:1.55; color:var(--taupe); max-width:30ch; margin:.7em auto 0; }
+  .gifts strong{ display:block; font-style:normal; font-family:"Jost",sans-serif; font-size:.62em; font-weight:400; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-deep); margin-top:.6em; }
+
+  .rsvp{ margin-top:.9em; }
+  .rsvp .by{ font-size:.78em; font-weight:300; letter-spacing:.05em; color:var(--taupe-soft); margin-bottom:.85em; }
+  .rsvp a{ display:inline-block; font-family:"Jost",sans-serif; font-size:.74em; font-weight:500; letter-spacing:.2em; text-transform:uppercase; text-decoration:none; color:var(--gold-deep); padding:.9em 2.4em; border:1px solid var(--gold); transition:background .25s ease, color .25s ease; }
+  .rsvp a:hover, .rsvp a:focus-visible{ background:var(--gold); color:#fff; outline:none; }
+</style>
+</head>
+<body>
+  <div class="frame">
+    <main class="card">
+
+      <svg class="lotus" viewBox="0 0 120 84" aria-hidden="true">
+        <path d="M60 14 C 65 32, 65 52, 60 68 C 55 52, 55 32, 60 14 Z"/>
+        <path d="M60 68 C 49 57, 44 41, 46 25 C 55 34, 60 51, 60 68 Z"/>
+        <path d="M60 68 C 71 57, 76 41, 74 25 C 65 34, 60 51, 60 68 Z"/>
+        <path d="M60 68 C 42 63, 29 51, 25 35 C 40 40, 53 53, 60 68 Z"/>
+        <path d="M60 68 C 78 63, 91 51, 95 35 C 80 40, 67 53, 60 68 Z"/>
+        <path d="M31 70 Q 60 79 89 70"/>
+        <circle class="dot" cx="60" cy="71.5" r="1.6"/>
+      </svg>
+
+      <p class="eyebrow">Join Us</p>
+
+      <div class="divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 C13 9 13 13 12 18 C11 13 11 9 12 4 Z M12 18 C8 15 6 11 7 7 C10 10 12 14 12 18 Z M12 18 C16 15 18 11 17 7 C14 10 12 14 12 18 Z"/></svg>
+        <span class="line"></span>
+      </div>
+
+      <h1 class="names">Manish<span class="amp">&amp;</span>Shubhangi</h1>
+
+      <p class="intro">warmly invite you to join us for a pooja.</p>
+
+      <div class="date-block">
+        <div class="date-day">Saturday</div>
+        <div class="date-main">October 17, 2026</div>
+        <div class="arrive">Please arrive by 10:00 AM</div>
+      </div>
+
+      <div class="schedule">
+        <div class="row"><div class="time">10:00 AM</div><div class="mark"><span></span></div><div class="event">Arrival, Tea &amp; Snacks</div></div>
+        <div class="row"><div class="time">11:00 AM</div><div class="mark"><span></span></div><div class="event">Meditation</div></div>
+        <div class="row"><div class="time">12:00 PM</div><div class="mark"><span></span></div><div class="event">Arya Samaj Pooja</div></div>
+        <div class="row"><div class="time">1:00 PM</div><div class="mark"><span></span></div><div class="event">Lunch &amp; Conversation</div></div>
+      </div>
+
+      <div class="location">
+        4 Pine Ridge Rd
+        <span class="sub">WAYLAND, MA 01778</span>
+      </div>
+
+      <div class="divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 C13 9 13 13 12 18 C11 13 11 9 12 4 Z M12 18 C8 15 6 11 7 7 C10 10 12 14 12 18 Z M12 18 C16 15 18 11 17 7 C14 10 12 14 12 18 Z"/></svg>
+        <span class="line"></span>
+      </div>
+
+      <p class="gifts">
+        Your presence and blessings are the only gifts we could wish for.
+        <strong>Please, no gifts</strong>
+      </p>
+
+      <div class="rsvp">
+        <div class="by">Kindly RSVP by October 10</div>
+        <a href="https://forms.gle/PPimtMx6fFF1HArV8">RSVP</a>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>
